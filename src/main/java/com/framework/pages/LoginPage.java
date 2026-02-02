@@ -40,7 +40,7 @@ public class LoginPage {
         password.sendKeys(pass);
         loginBtn.click();
 
-        return new DashboardPage();
+        return new DashboardPage(driver);
     }
     public String getErrorMessage() {
         return waitUtils.waitForVisibility(errorMsg).getText();

@@ -41,10 +41,6 @@ public class BaseTest {
 	    wait = new WaitUtils(driver);
 	}
  
-
-
-
-
     /**
      * This method runs after each test method.
      * It quits the WebDriver instance and cleans up resources.

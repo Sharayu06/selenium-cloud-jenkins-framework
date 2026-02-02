@@ -13,23 +13,24 @@ import com.framework.utils.TestDataProvider;
 public class LoginTest extends BaseTest {
 
 	@Test(dataProvider = "loginData", dataProviderClass = TestDataProvider.class)
-    public void loginTest(String user, String pass) {
+	public void loginTest(String user, String pass) {
 
-        LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
-        loginPage.login(user, pass);
+	    LoginPage loginPage = new LoginPage(driver);
 
-        if(user.equals("admin")) {
+	    // login() already returns DashboardPage
+	    DashboardPage dashboard = loginPage.login(user, pass);
 
-            DashboardPage dashboard = new DashboardPage();
-            String header = dashboard.getHeaderText();
+	    if(user.equals("admin")) {
 
-            AssertUtils.assertEquals(header, FrameworkConstants.DASHBOARD_HEADER);
+	        String header = dashboard.getHeaderText();
+	        AssertUtils.assertEquals(header, FrameworkConstants.DASHBOARD_HEADER);
 
-        } else {
+	    } else {
 
-            String error = loginPage.getErrorMessage();
-            AssertUtils.assertEquals(error, FrameworkConstants.INVALID_LOGIN_MSG);
-        }
-    }
+	        String error = loginPage.getErrorMessage();
+	        AssertUtils.assertEquals(error, FrameworkConstants.INVALID_LOGIN_MSG);
+	    }
+	}
+
 
 }

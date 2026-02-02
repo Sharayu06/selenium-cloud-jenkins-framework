@@ -23,9 +23,18 @@ public class WaitUtils {
     // Constructor initializes WebDriverWait with timeout
     public WaitUtils(WebDriver driver) {
         this.driver = driver;
+
+        String waitTime = ConfigReader.getProperty("explicitWait");
+
+        if (waitTime == null) {
+            throw new RuntimeException("explicitWait is missing in config.properties");
+        }
+
         wait = new WebDriverWait(driver,
-                Duration.ofSeconds(Integer.parseInt(ConfigReader.getProperty("explicitWait"))));
+                Duration.ofSeconds(Long.parseLong(waitTime)));
+        System.out.println("ExplicitWait value = " + waitTime);
     }
+
 
     // Wait until element is visible
     public WebElement waitForVisibility(By locator) {

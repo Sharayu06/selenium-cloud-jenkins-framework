@@ -42,31 +42,53 @@ public class TestListener implements ITestListener {
     // Executes when test fails
     @Override
     public void onTestFailure(ITestResult result) {
-    	System.out.println(" onTestFailure triggered");
 
+        // Triggered automatically by TestNG when any test method fails
+        System.out.println(" onTestFailure triggered");
 
-        // Log failure in Extent
+        // Log the failure exception/stacktrace into Extent Report
         test.fail(result.getThrowable());
 
-        // ✅ Directly get driver from DriverFactory (NO BaseTest change)
-        WebDriver driver = DriverFactory.getDriver();
+        // WebDriver reference to capture screenshot
+        WebDriver driver = null;
 
+        try {
+
+            // Get BaseTest class field "driver"
+            java.lang.reflect.Field field = result.getTestClass()
+                    .getRealClass()
+                    .getSuperclass()
+                    .getDeclaredField("driver");
+
+            // 🔥 Allow access to protected field
+            field.setAccessible(true);
+
+            // Fetch driver from BaseTest instance
+            driver = (WebDriver) field.get(result.getInstance());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        // Debug print to confirm driver is successfully received
         System.out.println(">>> Listener received driver: " + driver);
 
-        // Take screenshot
+        // Capture screenshot on failure and return file path
         String path = ScreenshotUtils.takeScreenshot(
                 driver,
                 result.getMethod().getMethodName()
         );
 
-        try {
-            test.addScreenCaptureFromPath(path);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Attach screenshot to Extent Report only if path is valid
+        if(path != null){
+            try {
+                test.addScreenCaptureFromPath(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
-
 
     // Executes after all tests finish
     @Override

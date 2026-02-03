@@ -39,6 +39,10 @@ public class BaseTest {
 
 	    // 4. Init waits
 	    wait = new WaitUtils(driver);
+	    
+	    System.out.println("Running on Browser = " + ConfigReader.getBrowser());
+	    System.out.println("Running on Environment = " + ConfigReader.getEnv());
+
 	}
  
     /**

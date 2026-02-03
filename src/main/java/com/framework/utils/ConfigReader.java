@@ -64,4 +64,15 @@ public class ConfigReader {
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
+    
+    public static String getBrowser() {
+        String browser = System.getProperty("browser");
+        return browser != null ? browser : properties.getProperty("browser");
+    }
+
+    public static String getEnv() {
+        String env = System.getProperty("env");
+        return env != null ? env : properties.getProperty("env");
+    }
+
 }

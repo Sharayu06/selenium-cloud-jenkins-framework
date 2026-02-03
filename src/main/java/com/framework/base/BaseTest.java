@@ -33,7 +33,7 @@ public class BaseTest {
 	    driver = DriverFactory.getDriver();
 
 	    // 3. Open URL
-	    driver.get(ConfigReader.getProperty("baseUrl"));
+	    driver.get(ConfigReader.getBaseUrl());
 
 	    System.out.println("Current URL = " + driver.getCurrentUrl());
 

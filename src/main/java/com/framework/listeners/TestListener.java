@@ -44,8 +44,6 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
 
         // Triggered automatically by TestNG when any test method fails
-        System.out.println(" onTestFailure triggered");
-
         // Log the failure exception/stacktrace into Extent Report
         test.fail(result.getThrowable());
 

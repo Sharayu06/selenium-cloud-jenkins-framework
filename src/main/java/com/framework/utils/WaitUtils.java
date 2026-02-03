@@ -32,7 +32,6 @@ public class WaitUtils {
 
         wait = new WebDriverWait(driver,
                 Duration.ofSeconds(Long.parseLong(waitTime)));
-        System.out.println("ExplicitWait value = " + waitTime);
     }
 
 

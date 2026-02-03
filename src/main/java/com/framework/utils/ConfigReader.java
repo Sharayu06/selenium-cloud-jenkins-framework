@@ -74,5 +74,25 @@ public class ConfigReader {
         String env = System.getProperty("env");
         return env != null ? env : properties.getProperty("env");
     }
+    public static String getBaseUrl() {
+
+        String env = getEnv();
+
+        switch (env.toLowerCase()) {
+
+            case "qa":
+                return properties.getProperty("qa.url");
+
+            case "uat":
+                return properties.getProperty("uat.url");
+
+            case "prod":
+                return properties.getProperty("prod.url");
+
+            default:
+                return properties.getProperty("qa.url");
+        }
+    }
+
 
 }

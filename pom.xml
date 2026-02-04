@@ -20,12 +20,22 @@
 
     <dependencies>
 
-        <!-- Selenium -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.17.0</version>
-        </dependency>
+       <!-- Selenium -->
+<!-- Selenium -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.18.1</version>
+</dependency>
+
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-devtools-v122</artifactId>
+    <version>4.18.1</version>
+</dependency>
+
+
+
 
         <!-- TestNG -->
         <dependency>

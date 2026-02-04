@@ -1,28 +1,23 @@
 package com.framework.pages;
 
+import com.framework.driver.DriverFactory;
 import com.framework.utils.WaitUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.framework.pages.DashboardPage;
-import org.openqa.selenium.By;
 
+/**
+ * LoginPage
+ * ---------
+ * ThreadLocal compatible Page Object.
+ * Driver is fetched directly from DriverFactory.
+ */
 public class LoginPage {
 
     private WebDriver driver;
     private WaitUtils waitUtils;
-    @FindBy(xpath = "//p[contains(@class,'alert-content-text')]")
-    private WebElement errorMsg;
 
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        this.waitUtils = new WaitUtils(driver);   // <<< IMPORTANT
-        PageFactory.initElements(driver, this);
-    }
-
-    // OrangeHRM uses NAME attribute
     @FindBy(name = "username")
     private WebElement username;
 
@@ -32,6 +27,27 @@ public class LoginPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//p[contains(@class,'alert-content-text')]")
+    private WebElement errorMsg;
+
+    /**
+     * Constructor
+     * -----------
+     * Fetches ThreadLocal driver from DriverFactory.
+     */
+
+    public LoginPage() {
+
+        this.driver = DriverFactory.getDriver();
+
+        if (this.driver == null) {
+            throw new RuntimeException("Driver is NULL inside LoginPage constructor");
+        }
+
+        this.waitUtils = new WaitUtils(driver);
+        PageFactory.initElements(driver, this);
+    }
+
     public DashboardPage login(String user, String pass) {
 
         waitUtils.waitForVisibility(username);
@@ -40,10 +56,10 @@ public class LoginPage {
         password.sendKeys(pass);
         loginBtn.click();
 
-        return new DashboardPage(driver);
+        return new DashboardPage();
     }
+
     public String getErrorMessage() {
         return waitUtils.waitForVisibility(errorMsg).getText();
     }
-
 }

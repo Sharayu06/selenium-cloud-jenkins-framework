@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-03T00:04:13 IST" name="Default suite" finished-at="2026-02-03T00:04:20 IST" duration-ms="7414">
+  <suite started-at="2026-02-04T00:46:29 IST" name="Default suite" finished-at="2026-02-04T00:46:36 IST" duration-ms="7005">
     <groups>
     </groups>
-    <test started-at="2026-02-03T00:04:13 IST" name="Default test" finished-at="2026-02-03T00:04:20 IST" duration-ms="7414">
+    <test started-at="2026-02-04T00:46:29 IST" name="Default test" finished-at="2026-02-04T00:46:36 IST" duration-ms="7005">
       <class name="com.framework.tests.DummyTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-03T00:04:13 IST" name="setUp" finished-at="2026-02-03T00:04:18 IST" duration-ms="5754" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-04T00:46:29 IST" name="setup" finished-at="2026-02-04T00:46:35 IST" duration-ms="5417" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="failingTest()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-03T00:04:18 IST" name="failingTest" finished-at="2026-02-03T00:04:19 IST" duration-ms="1063" status="FAIL">
+        </test-method> <!-- setup -->
+        <test-method signature="failingTest()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-04T00:46:35 IST" name="failingTest" finished-at="2026-02-04T00:46:36 IST" duration-ms="997" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -22,7 +22,7 @@ at org.testng.Assert.fail(Assert.java:111)
 at org.testng.Assert.failNotEquals(Assert.java:1590)
 at org.testng.Assert.assertTrue(Assert.java:57)
 at org.testng.Assert.assertTrue(Assert.java:67)
-at com.framework.tests.DummyTest.failingTest(DummyTest.java:17)
+at com.framework.tests.DummyTest.failingTest(DummyTest.java:19)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -55,7 +55,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- failingTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-03T00:04:20 IST" name="tearDown" finished-at="2026-02-03T00:04:20 IST" duration-ms="320" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.framework.tests.DummyTest@5fe94a96]" started-at="2026-02-04T00:46:36 IST" name="tearDown" finished-at="2026-02-04T00:46:36 IST" duration-ms="291" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

@@ -1,17 +1,15 @@
-
-
-<suite name="Selenium Automation Suite" time-out="30000">
+<suite name="Selenium Automation Suite"
+       parallel="methods"
+       thread-count="2">
 
     <listeners>
         <listener class-name="com.framework.listeners.TestListener"/>
     </listeners>
 
-    <test name="Smoke Tests">
-
+    <test name="Login Tests">
         <classes>
             <class name="com.framework.tests.LoginTest"/>
         </classes>
-
     </test>
 
 </suite>

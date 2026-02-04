@@ -1,58 +1,40 @@
 package com.framework.base;
 
+import com.framework.driver.DriverFactory;
+import com.framework.utils.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import com.framework.driver.DriverFactory;
-import com.framework.utils.ConfigReader;
-import com.framework.utils.WaitUtils;
-
 /**
  * BaseTest
  * --------
- * Contains common setup and teardown logic
- * for all test classes.
+ * Responsible for:
+ *  - Initializing ThreadLocal WebDriver BEFORE every test
+ *  - Navigating to Base URL
+ *  - Quitting driver AFTER every test
  */
-
 public class BaseTest {
-	protected WaitUtils wait;
-	protected WebDriver driver;
 
-    /**
-     * This method runs before each test method.
-     * It initializes the WebDriver and launches the application URL.
-     */
-	@BeforeMethod
-	public void setUp() {
+    @BeforeMethod(alwaysRun = true)
+    public void setup() {
 
-	    // 1. Create driver
-	    DriverFactory.initDriver();
+        String browser = ConfigReader.getBrowser();
 
-	    // 2. Get driver from ThreadLocal
-	    driver = DriverFactory.getDriver();
+        // Initialize ThreadLocal driver
+        DriverFactory.initDriver(browser);
 
-	    // 3. Open URL
-	    driver.get(ConfigReader.getBaseUrl());
+        WebDriver driver = DriverFactory.getDriver();
 
-	    System.out.println("Current URL = " + driver.getCurrentUrl());
+        System.out.println("Thread Driver = " + driver);
 
-	    // 4. Init waits
-	    wait = new WaitUtils(driver);
-	    
-	    System.out.println("Running on Browser = " + ConfigReader.getBrowser());
-	    System.out.println("Running on Environment = " + ConfigReader.getEnv());
+        // Open application
+        driver.manage().window().maximize();
+        driver.get(ConfigReader.getBaseUrl());
+    }
 
-	}
- 
-    /**
-     * This method runs after each test method.
-     * It quits the WebDriver instance and cleans up resources.
-     */
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
-
-        // Quit WebDriver and clean ThreadLocal
         DriverFactory.quitDriver();
     }
 }

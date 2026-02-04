@@ -7,7 +7,7 @@
         <methods>
           <include name="failingTest"/>
           <include name="tearDown"/>
-          <include name="setUp"/>
+          <include name="setup"/>
         </methods>
       </class> <!-- com.framework.tests.DummyTest -->
     </classes>

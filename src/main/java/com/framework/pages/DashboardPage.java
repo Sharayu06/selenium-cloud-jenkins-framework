@@ -1,44 +1,36 @@
 package com.framework.pages;
 
+import com.framework.driver.DriverFactory;
 import com.framework.utils.WaitUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-/*
- * DashboardPage represents the home page after successful login.
- * This class follows proper Page Object Model design:
- * - Receives WebDriver via constructor (no DriverFactory usage here)
- * - Initializes WaitUtils using same driver
- * - Contains locators + actions for Dashboard
+/**
+ * DashboardPage
  */
 public class DashboardPage {
 
-    // WebDriver instance coming from LoginPage
     private WebDriver driver;
-
-    // Explicit wait utility (uses same driver)
     private WaitUtils waitUtils;
 
-    // Locator for Dashboard header text
-    private By header = By.xpath("//h6");
+    @FindBy(tagName = "h6")
+    private WebElement dashboardHeader;
 
-    /*
-     * Constructor
-     * Receives driver from previous page (LoginPage)
-     * Initializes WaitUtils and PageFactory
-     */
-    public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        this.waitUtils = new WaitUtils(driver);   // IMPORTANT: same driver
+    public DashboardPage() {
+
+        this.driver = DriverFactory.getDriver();
+
+        if (driver == null) {
+            throw new RuntimeException("Driver is NULL inside DashboardPage");
+        }
+
+        this.waitUtils = new WaitUtils(driver);
         PageFactory.initElements(driver, this);
     }
 
-    /*
-     * Fetches Dashboard header text.
-     * Waits until header becomes visible before reading text.
-     */
-    public String getHeaderText() {
-        return waitUtils.waitForVisibility(header).getText();
+    public String getDashboardTitle() {
+        return waitUtils.waitForVisibility(dashboardHeader).getText();
     }
 }

@@ -2,10 +2,15 @@ package com.framework.pages;
 
 import com.framework.driver.DriverFactory;
 import com.framework.utils.WaitUtils;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * LoginPage
@@ -60,6 +65,12 @@ public class LoginPage {
     }
 
     public String getErrorMessage() {
-        return waitUtils.waitForVisibility(errorMsg).getText();
+
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.visibilityOf(errorMsg));
+
+        return errorMsg.getText();
     }
+
 }

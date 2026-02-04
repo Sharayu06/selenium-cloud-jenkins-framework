@@ -93,6 +93,19 @@ public class ConfigReader {
                 return properties.getProperty("qa.url");
         }
     }
+    
+    public static String getHeadless() {
+
+        String headless = System.getProperty("HEADLESS");
+
+        if (headless != null) {
+            return headless;
+        }
+
+        return properties.getProperty("headless");
+    }
+
+
 
 
 }

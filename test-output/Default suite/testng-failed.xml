@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.framework.tests.DummyTest">
+      <class name="com.framework.api.tests.UserApiTest">
         <methods>
-          <include name="failingTest"/>
-          <include name="tearDown"/>
-          <include name="setup"/>
+          <include name="apiSetup"/>
+          <include name="getUsersTest"/>
         </methods>
-      </class> <!-- com.framework.tests.DummyTest -->
+      </class> <!-- com.framework.api.tests.UserApiTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

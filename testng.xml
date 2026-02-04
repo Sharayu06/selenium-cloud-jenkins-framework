@@ -1,18 +1,23 @@
-
 <suite name="Automation Suite" parallel="tests" thread-count="2">
 
-    <test name="ChromeTests">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="com.framework.tests.LoginTest"/>
-        </classes>
-    </test>
+	<test name="ChromeTests">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.framework.tests.LoginTest" />
+		</classes>
+	</test>
 
-    <test name="FirefoxTests">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="com.framework.tests.LoginTest"/>
-        </classes>
-    </test>
-
+	<test name="FirefoxTests">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.framework.tests.LoginTest" />
+		</classes>
+	</test>
+	
+	<test name="API Tests">
+		<classes>
+			<class name="com.framework.api.tests.UserApiTest" />
+		</classes>
+	</test>
+	
 </suite>

@@ -67,7 +67,7 @@ public class LoginPage {
 
     public String getErrorMessage() {
 
-        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(20));
 
         wait.until(ExpectedConditions.visibilityOf(errorMsg));
 

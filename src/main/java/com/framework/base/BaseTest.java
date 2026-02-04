@@ -2,6 +2,9 @@ package com.framework.base;
 
 import com.framework.driver.DriverFactory;
 import com.framework.utils.ConfigReader;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,6 +28,7 @@ public class BaseTest {
         DriverFactory.initDriver(browser);
 
         WebDriver driver = DriverFactory.getDriver();
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 
         System.out.println("Thread Driver = " + driver);
 

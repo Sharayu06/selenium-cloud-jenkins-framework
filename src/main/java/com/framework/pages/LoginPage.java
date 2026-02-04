@@ -55,6 +55,7 @@ public class LoginPage {
 
     public DashboardPage login(String user, String pass) {
 
+        WaitUtils.waitForPageLoad();
         waitUtils.waitForVisibility(username);
 
         username.sendKeys(user);

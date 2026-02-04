@@ -1,12 +1,15 @@
 package com.framework.utils;
 
 import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.framework.driver.DriverFactory;
+
+import org.openqa.selenium.JavascriptExecutor;
 
 /*
  * This class contains reusable explicit wait methods.
@@ -58,6 +61,16 @@ public class WaitUtils {
     // Wait until WebElement is clickable (PageFactory support)
     public WebElement waitForClick(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    
+    public static void waitForPageLoad() {
+
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(15));
+
+        wait.until(webDriver ->
+                ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState")
+                        .equals("complete"));
     }
 
 }
